@@ -9,9 +9,6 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 
 public class LoginHandler extends ChannelInboundHandlerAdapter {
 
-
-
-
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         if(msg instanceof User){

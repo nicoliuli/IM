@@ -17,9 +17,7 @@ import java.util.List;
  * 起到服务端聊天消息路由的作用
  */
 public class RouteHandler extends ChannelInboundHandlerAdapter {
-
     private String serverId;
-
     public RouteHandler(String serverId) {
         this.serverId = serverId;
     }
@@ -30,11 +28,6 @@ public class RouteHandler extends ChannelInboundHandlerAdapter {
             ChatMsg chatMsg = (ChatMsg) msg;
             Integer toId = chatMsg.getToId();
             String sId = UserLoginMap.getServerId(toId + "");
-            if("exit".equals(chatMsg.getText()) || "quit".equals(chatMsg.getText())){
-                UserLoginMap.remove(chatMsg.getFromId() + "");
-                ServerSession session = ServerSession.getSession(ctx);
-                session.getChannel().close();
-            }
             if(sId == null || "".equals(sId)){
                 //对方不在线
                 List<ServerSession> sessions = ServerSessionMap.getSessionByUid(chatMsg.getFromId());

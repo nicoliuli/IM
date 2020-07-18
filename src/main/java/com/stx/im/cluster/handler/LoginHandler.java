@@ -9,7 +9,9 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 
 public class LoginHandler extends ChannelInboundHandlerAdapter {
 
-
+    /**
+     * 每台机器需要一个唯一的serverId来标示机器，本例暂时用 1 2 等来标示
+     */
     private String serverId;
 
     public LoginHandler(String serverId) {
@@ -37,5 +39,4 @@ public class LoginHandler extends ChannelInboundHandlerAdapter {
     private boolean checkLogin(User u){
         return UserDao.getUserById(u.getId()) != null;
     }
-
 }
